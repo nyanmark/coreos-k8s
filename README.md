@@ -48,4 +48,4 @@ In my configuration I will be using port 6443 on the load balancer for the API a
 
 ```kubeadm init --upload-certs --config=cluster-config.yaml```
 
-Once your first master is deployed just use the join command displayed to you to deploy the other master nodes. Remember to save the control plane command as it is harder to recover if lost.
+Once your first master is deployed save the join command displayed to you needed to deploy the other master nodes. It is annoying to recover if lost.
