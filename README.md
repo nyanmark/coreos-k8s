@@ -19,7 +19,7 @@ To deploy the CoreOS you will need something call an ignition config, Once you b
           [connection]
           type=ethernet
           id="Wired connection 1"
-          interface-name=ens192
+          interface-name=<INTERFACE NAME>
 
           [ipv4]
           method=manual
