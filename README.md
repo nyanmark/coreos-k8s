@@ -30,6 +30,13 @@ To deploy the CoreOS you will need something called an [ignition config](https:/
 
 Additionally if you do not wish to use an SSH key or want to have a password just incase you can add `password_hash: <YOUR ENCODED PASSWORD>` to the users definition. The password has to be encorded to do so use the `mkpasswd --method=yescrypt` command from the whois package.
 
-Once you have your YAML file ready you will have to encode it into a JSON format this is done through a program called butane which you can [download here](https://github.com/coreos/butane/releases). I personally use linux so I download the latest version and place it into my `/usr/local/bin/butane` don't forget to `chmod +x /usr/local/bin/butane` to make it executable. Now we can create our .ign file with the command `butane --pretty --strict ignition.yaml > config.ign`. I will then serve those files using `python3 -m http.server 80` from my desktop and deploy the CoreOS servers.
+Once you have your YAML file ready you will have to encode it into a JSON format this is done through a program called butane which you can [download here](https://github.com/coreos/butane/releases). I personally use linux so I download the latest version and place it into my `/usr/local/bin/butane` don't forget to `chmod +x /usr/local/bin/butane` to make it executable. Now we can create our .ign file with the command:
+```butane --pretty --strict ignition.yaml > config.ign```. 
+I will then serve those files using `python3 -m http.server 80` from my desktop and deploy the CoreOS servers.
 
-Finally we can SSH into our CoreOS nodes. I will be using CRI-O as my Container Runtime. To install the required packages you will need to execute `sudo rpm-ostree install kubelet kubeadm kubectl cri-o` additionally you can add `open-vm-tools` to that command if you're running in a VMware environement like myself.
+Finally we can SSH into our CoreOS nodes. I will be using CRI-O as my Container Runtime. To install the required packages you will need to execute:
+```sudo rpm-ostree install kubelet kubeadm kubectl cri-o``` 
+Additionally you can add `open-vm-tools` to that command if you're running in a VMware environement like myself.
+
+Due to the way CoreOS works after installing the packages you will have to reboot the server, you can use `sudo systemctl reboot` to do so. Once the server is back up you will need to enable the services:
+```sudo systemctl enable --now crio kubelet```
