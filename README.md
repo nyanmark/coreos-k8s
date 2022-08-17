@@ -41,3 +41,5 @@ I will then serve those files using `python3 -m http.server 80` from my desktop 
 Additionally you can add `open-vm-tools` to that command if you're running in a VMware environement like myself. Due to the way CoreOS works after installing the packages you will have to reboot the server, you can use `sudo systemctl reboot` to do so. Once the server is back up you will need to enable the services:
 
 ```sudo systemctl enable --now crio kubelet```
+
+Before we can initialize our cluster we will have to take some considerations on how to run our cluster in HA. Due to use being in an on premises environement we do not have a cloud load balancer meaning we will have to have our own. Kubernetes has some documentation on this [here](https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/high-availability/) and on [github](https://github.com/kubernetes/kubeadm/blob/main/docs/ha-considerations.md#options-for-software-load-balancing) I will personally be going with the keepalived and haproxy as static pods route.
