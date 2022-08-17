@@ -1,0 +1,46 @@
+variant: fcos
+version: 1.4.0
+storage:
+  files:
+    # CRI-O DNF module
+    - path: /etc/dnf/modules.d/cri-o.module
+      mode: 0644
+      overwrite: true
+      contents:
+        inline: |
+          [cri-o]
+          name=cri-o
+          stream=1.24
+          profiles=
+          state=enabled
+    # YUM repository for kubeadm, kubelet and kubectl
+    - path: /etc/yum.repos.d/kubernetes.repo
+      mode: 0644
+      overwrite: true
+      contents:
+        inline: |
+          [kubernetes]
+          name=Kubernetes
+          baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+          enabled=1
+          gpgcheck=1
+          gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+    # configuring automatic loading of br_netfilter on startup
+    - path: /etc/modules-load.d/br_netfilter.conf
+      mode: 0644
+      overwrite: true
+      contents:
+        inline: br_netfilter
+    # setting kernel parameters required by kubelet
+    - path: /etc/sysctl.d/kubernetes.conf
+      mode: 0644
+      overwrite: true
+      contents:
+        inline: |
+          net.bridge.bridge-nf-call-iptables=1
+          net.ipv4.ip_forward=1
+passwd: # setting login credentials
+  users:
+    - name: core
+      ssh_authorized_keys:
+        - <YOUR PUBLIC KEY>
