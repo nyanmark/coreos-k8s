@@ -4,7 +4,7 @@ First you will need to aquire the CoreOS ISO at the time of writing I am using c
 
 [CoreOS Download URL](https://getfedora.org/en/coreos/download?tab=metal_virtualized&stream=stable&arch=x86_64)
 
-To deploy the CoreOS you will need something call an ignition config, Once you boot the ISO in your virtual machine it will request a ignition file or an ignition URL. I have added a base ignition config however, it relies on DHCP to provide the hostname and IP address if you want to apply it statically add the code block below to storage, files.
+To deploy the CoreOS you will need something call an [ignition config](https://github.com/nyanmark/coreos-k8s/blob/main/ignition.yaml), Once you boot the ISO in your virtual machine it will request a ignition file or an ignition URL. I have added a base ignition config however, it relies on DHCP to provide the hostname and IP address if you want to apply it statically add the code block below to storage, files.
 
 ```
     - path: /etc/hostname
