@@ -34,14 +34,10 @@ Once you have your YAML file ready you will have to encode it into a JSON format
 
 ```butane --pretty --strict ignition.yaml > config.ign```
 
-I will then serve those files using `python3 -m http.server 80` from my desktop and deploy the CoreOS servers.
-
-Finally we can SSH into our CoreOS nodes. I will be using CRI-O as my Container Runtime. To install the required packages you will need to execute:
+I will then serve those files using `python3 -m http.server 80` from my desktop and deploy the CoreOS servers. Finally we will be able to SSH into our CoreOS nodes. I will be using CRI-O as my Container Runtime. To install the required packages you will need to execute:
 
 ```sudo rpm-ostree install kubelet kubeadm kubectl cri-o``` 
 
-Additionally you can add `open-vm-tools` to that command if you're running in a VMware environement like myself.
-
-Due to the way CoreOS works after installing the packages you will have to reboot the server, you can use `sudo systemctl reboot` to do so. Once the server is back up you will need to enable the services:
+Additionally you can add `open-vm-tools` to that command if you're running in a VMware environement like myself. Due to the way CoreOS works after installing the packages you will have to reboot the server, you can use `sudo systemctl reboot` to do so. Once the server is back up you will need to enable the services:
 
 ```sudo systemctl enable --now crio kubelet```
