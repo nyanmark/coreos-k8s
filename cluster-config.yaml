@@ -39,6 +39,5 @@ kind: ClusterConfiguration
 kubernetesVersion: v1.24.3
 networking:
   dnsDomain: cluster.local
-  podSubnet: <POD SUBNET(172.20.0.0/16)>
-  serviceSubnet: <SERVICE SUBNET(172.16.0.0/14)>
+  podSubnet: <POD SUBNET(192.168.0.0/16)>
 scheduler: {}
