@@ -98,7 +98,7 @@ master1   Ready    control-plane   86s   v1.24.3
 master2   Ready    control-plane   16s   v1.24.3
 ```
 
-We can finally start working on the worker nodes in our cluster for the sake of this I will also be doing 3 CoreOS worker nodes. To deploy my worker virtual machines I will be using the same ignition configs as before and installing an additional package iscsi-initiator-utils this is needed for the storage backend we are going to use OpenEBS Jiva, this will let us have HA distributed storage on site, Rook Ceph also does this well:
+We can finally start working on the worker nodes in our cluster for the sake of this I will also be doing 3 CoreOS worker nodes. To deploy my worker virtual machines I will be using the same ignition configs as before and installing an additional package iscsi-initiator-utils this is needed for the storage backend we are going to use [OpenEBS](https://openebs.io/) Jiva, this will let us have HA distributed storage on site, [Rook](https://rook.io/) Ceph also does this well:
 
 ```sudo rpm-ostree install kubelet kubeadm kubectl cri-o open-vm-tools iscsi-initiator-utils``` 
 
