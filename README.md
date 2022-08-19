@@ -98,7 +98,7 @@ master1   Ready    control-plane   86s   v1.24.3
 master2   Ready    control-plane   16s   v1.24.3
 ```
 
-We can finally start working on the worker nodes in our cluster for the sake of this I will also be doing 3 CoreOS worker nodes. To deploy my worker virtual machines I will be using the same ignition configs as before we will also need the iscsi package wbich is pre-installed on coreos this is needed for the storage backend we are going to use [OpenEBS](https://openebs.io/) Jiva, this will let us have HA distributed storage on site, [Rook](https://rook.io/) Ceph also does this well. Once the packages have been installed and the server rebooted we can get ready to add it to our cluster first some commands will need to be ran to prepare it for OpenEBS after this the join command can be ran to add the server to the cluster.
+We can finally start working on the worker nodes in our cluster for the sake of this I will also be doing 3 CoreOS worker nodes. To deploy my worker virtual machines I will be using the same ignition configs as before we will also need the iscsi package wbich is pre-installed on coreos this is needed for the storage backend we are going to use [OpenEBS](https://openebs.io/) cStor, this will let us have HA distributed storage on site, [Rook](https://rook.io/) Ceph also does this well. Once the packages have been installed and the server rebooted we can get ready to add it to our cluster first some commands will need to be ran to prepare it for OpenEBS after this the join command can be ran to add the server to the cluster.
 
 ```sudo systemctl enable --now crio kubelet iscsid```
 
@@ -108,7 +108,7 @@ We can finally start working on the worker nodes in our cluster for the sake of 
 
 ```kubeadm join <DATA>```
 
-Once the servers have joined the cluster you can confirm this with a `kubectl get nodes` which should output a list similar to the one below. The next step would be configuring the storage I will be using [this guide](https://github.com/openebs/jiva-operator/blob/develop/docs/quickstart.md) from OpenEBS to deploy my storage and I am going to set `replicationFactor` to 3 meaning there will be a copy on all 3 worker nodes.
+Once the servers have joined the cluster you can confirm this with a `kubectl get nodes` which should output a list similar to the one below. The next step would be configuring the storage I will be using [this guide](https://github.com/openebs/cstor-operators/blob/develop/docs/quick.md) from OpenEBS to deploy my storage and I am going to set `replicationFactor` to 3 meaning there will be a copy on all 3 worker nodes.
 
 ```
 NAME      STATUS   ROLES           AGE     VERSION
