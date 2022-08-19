@@ -48,4 +48,41 @@ In my configuration I will be using port 6443 on the load balancer for the API a
 
 ```kubeadm init --upload-certs --config=cluster-config.yaml```
 
-Once your first master is deployed save the join command displayed to you needed to deploy the other master nodes. It is annoying to recover if lost.
+Once your first master is deployed save the join command displayed to you needed to deploy the other master nodes. It is annoying to recover if lost. The next step would be to install your network plugin, in my case I will be using [calico](https://www.tigera.io/project-calico/) as of writing this I am using CoreOS 36, Kubernetes 1.24.3 and Calico 3.24. To install calico:
+
+```kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.0/manifests/tigera-operator.yaml```
+
+Then create a file for the calico custom resource, if you're following their guide all you have to edit is the IPv4 block and add the `flexVolumePath` for CoreOS as the default path is unwritable
+
+```
+# This section includes base Calico installation configuration.
+# For more information, see: https://projectcalico.docs.tigera.io/master/reference/installation/api#operator.tigera.io/v1.Installation
+apiVersion: operator.tigera.io/v1
+kind: Installation
+metadata:
+  name: default
+spec:
+  flexVolumePath: /etc/kubernetes/kubelet-plugins/volume/exec
+  # Configures Calico networking.
+  calicoNetwork:
+    # Note: The ipPools section cannot be modified post-install.
+    ipPools:
+    - blockSize: 26
+      cidr: 192.168.0.0/16
+      encapsulation: VXLANCrossSubnet
+      natOutgoing: Enabled
+      nodeSelector: all()
+---
+
+# This section configures the Calico API server.
+# For more information, see: https://projectcalico.docs.tigera.io/master/reference/installation/api#operator.tigera.io/v1.APIServer
+apiVersion: operator.tigera.io/v1
+kind: APIServer 
+metadata: 
+  name: default 
+spec: {}
+```
+
+```kubectl create -f custom-resource.yaml```
+
+Now you should have the network driver installed to verify `kubectl get pods -n calico-system` all the pods should be running.
