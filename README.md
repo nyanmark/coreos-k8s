@@ -119,3 +119,5 @@ worker0   Ready    <none>          4m33s   v1.24.4
 worker1   Ready    <none>          3m44s   v1.24.4
 worker2   Ready    <none>          96s     v1.24.4
 ```
+
+After we got our storage ready we need to configure a couple more things which is the load balancer and reverse proxy, as we do not have a cloud load balancer we will be using a project called [metallb](https://metallb.io) which will allow us to run a load balancer right inside k8s. First we will chose operation mode which can be either bgp or arp the installation guide is [located here](https://metallb.universe.tf/installation/) if you want to run BGP you will have to be aware of calico also running its own bgp service meaning you will have to use the patch [from here](https://metallb.universe.tf/configuration/calico/).
