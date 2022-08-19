@@ -108,7 +108,7 @@ We can finally start working on the worker nodes in our cluster for the sake of 
 
 ```kubeadm join <DATA>```
 
-Once the servers have joined the cluster you can confirm this with a `kubectl get nodes` which should output a list similar to the one below. The next step would be configuring the storage I will be using [this guide](https://github.com/openebs/cstor-operators/blob/develop/docs/quick.md) from OpenEBS to deploy my storage and I am going to set `replicationFactor` to 3 meaning there will be a copy on all 3 worker nodes.
+Once the servers have joined the cluster you can confirm this with a `kubectl get nodes` which should output a list similar to the one below. The next step would be configuring the storage I will be using [this guide](https://github.com/openebs/cstor-operators/blob/develop/docs/quick.md) from OpenEBS to deploy my storage and I will need to add an aditional disk to each worker node.
 
 ```
 NAME      STATUS   ROLES           AGE     VERSION
