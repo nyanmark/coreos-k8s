@@ -85,7 +85,7 @@ spec: {}
 
 ```kubectl create -f custom-resource.yaml```
 
-Now you should have the network driver installed to verify `kubectl get pods -n calico-system` all the pods should be running. This means you can add your other control plane nodes to the cluster using the join command you saved earlier add `--apiserver-bind-port <YOUR PORT>` to the end of the join command so the API server starts on the correct port in my case the port is 6444. You can run `kubectl get nodes` to see if they have joined successfully:
+To verify calico's status run `kubectl get pods -n calico-system` all the pods should be running. This means you can add your other control plane nodes to the cluster using the join command you saved earlier add `--apiserver-bind-port <YOUR PORT>` to the end of the join command so the API server starts on the correct port in my case the port is 6444. You can run `kubectl get nodes` to see if they have joined successfully:
 
 ```
 NAME      STATUS   ROLES           AGE   VERSION
