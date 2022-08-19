@@ -102,7 +102,7 @@ We can finally start working on the worker nodes in our cluster for the sake of 
 
 Once the packages have been installed and the server rebooted we can get ready to add it to our cluster first some commands will need to be ran to prepare it for OpenEBS after this the join command can be ran to add the server to the cluster.
 
-```sudo systemctl enable --now iscsid```
+```sudo systemctl enable --now crio kubelet iscsid```
 
 ```modprobe iscsi_tcp```
 
