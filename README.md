@@ -93,3 +93,5 @@ master0   Ready    control-plane   14m   v1.24.3
 master1   Ready    control-plane   86s   v1.24.3
 master2   Ready    control-plane   16s   v1.24.3
 ```
+
+We can finally start working on the worker nodes in our cluster for the sake of this I will also be doing 3 CoreOS worker nodes.
