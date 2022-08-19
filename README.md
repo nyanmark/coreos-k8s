@@ -52,7 +52,7 @@ Once your first master is deployed save the join command displayed to you needed
 
 ```kubectl create -f https://raw.githubusercontent.com/projectcalico/calico/v3.24.0/manifests/tigera-operator.yaml```
 
-Then create a file for the calico custom resource, if you're following their guide all you have to edit is the IPv4 block and add the `flexVolumePath` variable for CoreOS as the default path used by calico is unwritable.
+Then create a file for the calico custom resource, if you're following their guide all you have to edit is the IPv4 block and add the `flexVolumePath` variable for CoreOS as the default path used by calico is unwritable. Also feel free to install the calicoctl software on your host I have linked the [guide here](https://projectcalico.docs.tigera.io/maintenance/clis/calicoctl/install).
 
 ```
 # This section includes base Calico installation configuration.
