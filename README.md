@@ -85,4 +85,11 @@ spec: {}
 
 ```kubectl create -f custom-resource.yaml```
 
-Now you should have the network driver installed to verify `kubectl get pods -n calico-system` all the pods should be running. Now you can add your other nodes to the cluster.
+Now you should have the network driver installed to verify `kubectl get pods -n calico-system` all the pods should be running. This means you can add your other control plane nodes to the cluster using the join command you saved earlier. `kubectl get nodes`:
+
+```
+NAME      STATUS   ROLES           AGE   VERSION
+master0   Ready    control-plane   14m   v1.24.3
+master1   Ready    control-plane   86s   v1.24.3
+master2   Ready    control-plane   16s   v1.24.3
+```
