@@ -85,4 +85,4 @@ spec: {}
 
 ```kubectl create -f custom-resource.yaml```
 
-Now you should have the network driver installed to verify `kubectl get pods -n calico-system` all the pods should be running.
+Now you should have the network driver installed to verify `kubectl get pods -n calico-system` all the pods should be running. Now you can add your other nodes to the cluster.
