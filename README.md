@@ -100,4 +100,12 @@ master2   Ready    control-plane   16s   v1.24.3
 
 We can finally start working on the worker nodes in our cluster for the sake of this I will also be doing 3 CoreOS worker nodes. To deploy my worker virtual machines I will be using the same ignition configs as before we will also need the iscsi package wbich is pre-installed on coreos this is needed for the storage backend we are going to use [OpenEBS](https://openebs.io/) Jiva, this will let us have HA distributed storage on site, [Rook](https://rook.io/) Ceph also does this well.
 
+Once the packages have been installed and the server rebooted we can get ready to add it to our cluster first some commands will need to be ran to prepare it for OpenEBS after this the join command can be ran to add the server to the cluster.
 
+```sudo systemctl enable --now iscsid```
+
+```modprobe iscsi_tcp```
+
+```echo iscsi_tcp >/etc/modules-load.d/iscsi-tcp.conf```
+
+```kubeadm join <DATA>```
