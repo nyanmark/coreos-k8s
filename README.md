@@ -36,9 +36,9 @@ Once you have your YAML file ready you will have to encode it into a JSON format
 
 I will then serve those files using `python3 -m http.server 80` from my desktop and deploy the CoreOS servers. Finally we will be able to SSH into our CoreOS nodes. I will be using CRI-O as my Container Runtime. To install the required packages you will need to execute:
 
-```sudo rpm-ostree install kubelet kubeadm kubectl cri-o``` 
+```sudo rpm-ostree install kubelet kubeadm kubectl cri-o open-vm-tools``` 
 
-Additionally you can add `open-vm-tools` to that command if you're running in a VMware environement like myself. Due to the way CoreOS works after installing the packages you will have to reboot the server, you can use `sudo systemctl reboot` to do so. Once the server is back up you will need to enable the services:
+If you stumble upon this error `error: failed to parse public key for /var/cache/rpm-ostree/repomd/kubernetes-36-x86_64/yum-key.gpg` just run `rm /var/cache/rpm-ostree/repomd/kubernetes-36-x86_64/yum-key.gpg` and re run the rpm command. Due to the way CoreOS works after installing the packages you will have to reboot the server, you can use `sudo systemctl reboot` to do so. Once the server is back up you will need to enable the services:
 
 ```sudo systemctl enable --now crio kubelet```
 
