@@ -55,6 +55,7 @@ Once your first master is deployed save the join command displayed to you needed
 Then create a file for the calico custom resource, if you're following their guide all you have to edit is the IPv4 block and add the `flexVolumePath` variable for CoreOS as the default path used by calico is unwritable. Also feel free to install the calicoctl software on your host:
 
 ```curl -L https://github.com/projectcalico/calico/releases/download/v3.24.0/calicoctl-linux-amd64 -o /usr/local/bin/calicoctl```
+
 ```chmod +x /usr/local/bin/calicoctl```
 
 ```
