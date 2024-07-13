@@ -1,5 +1,7 @@
 # Kubernetes on CoreOS on Premise Deployment
 
+Update! - I wrote this guide around 2 years ago, and I am not sure wether it's still functional. Anyways, I would highly recommend to check out [Talos Linux](https://www.talos.dev/) it will pretty much set up the cluster for you and will probably be a more reliable solution then self administrating this on CoreOS.
+
 I am no pro at writing guides and this is honestly my first one, I will be installing everything needed to have a proper "cloud like" cluster at home if I have made any mistakes please tell me. First you will need to aquire the CoreOS ISO at the time of writing I am using coreOS 36
 
 [CoreOS Download URL](https://getfedora.org/en/coreos/download?tab=metal_virtualized&stream=stable&arch=x86_64)
